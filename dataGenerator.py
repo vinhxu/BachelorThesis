@@ -1,23 +1,19 @@
 import numpy as np
 import pandas as pd
 import math
-import csv
-from matplotlib.path import Path
 from matplotlib.patches import Rectangle
-from matplotlib.patches import PathPatch
 import matplotlib.pyplot as plt
-from random import random
-from collections import OrderedDict
+
 
 
 vertices = np.array([(900, 350), (888, 855), (853, 855), (850, 779)])
 vertices = np.array([(890, 350), (892, 855), (853, 855), (850, 779)])
 # codes    = np.array([Path.MOVETO] + [Path.LINETO]* 3 + [Path.STOP])
 
-roomsDimension = pd.read_csv('./01_data/room.csv')
-doorsDimension = pd.read_csv('./01_data/door.csv')
-# routesDimension = pd.read_csv('./01_data/route.csv')
-routesDimension = pd.read_csv('./01_data/route2.csv')
+roomsDimension = pd.read_csv('./01_rawData/room.csv')
+doorsDimension = pd.read_csv('./01_rawData/door.csv')
+routesDimension = pd.read_csv('./01_rawData/route.csv')
+# routesDimension = pd.read_csv('./01_rawData/route2.csv')
 
 plt.figure()
 ax = plt.gca()
@@ -71,8 +67,7 @@ def draw_walking_path(vertices, stepDistance, plot=plt):
     # ax = plot.gca()
     ax.plot(xRange, yRange, marker="o", ls="", ms=.7)
 
-    # generate_walkingPath_xy(xRange,yRange)
-    generate_walkingPath_errorCircle(xRange, yRange, plt)
+    generate_walkingPath_xy(xRange,yRange)
 
 
     return xRange, yRange
@@ -101,21 +96,7 @@ def generate_walkingPath_xy(xRange, yRange):
     route    = pd.DataFrame({'x': routeX,    'y': routeY,    'label':  1})
     nonRoute = pd.DataFrame({'x': nonRouteX, 'y': nonRouteY, 'label':  0})
     data = pd.concat([route,nonRoute])
-    data.to_csv('./01_data/walkingPathData.csv', index=False)
-
-
-def generate_walkingPath_errorCircle(xRange, yRange, plot):
-    routeX, routeY = xRange, yRange
-
-
-    for i, x in enumerate(routeX):
-        circle1 = plot.Circle((routeX[i], routeY[i]), 1.5, color='r')
-        circle2 = plot.Circle((routeX[i], routeY[i]), 3,   color='b', alpha =0.2)
-        ax.add_artist(circle1)
-        ax.add_artist(circle2)
-        # circle1 = plt.Circle((0, 0), 0.2, color='r')
-        # circle2 = plt.Circle((0.5, 0.5), 0.2, color='blue')
-        # circle3 = plt.Circle((1, 1), 0.2, color='g', clip_on=False)
+    # data.to_csv('./01_data/walkingPathData.csv', index=False)
 
 
 
@@ -224,9 +205,9 @@ def generate_map_xy(totalNumberOfSamples):
     data = pd.concat([route,nonRoute])
     # print data
     # print(len(data))
-    data.to_csv('./01_data/bRoute2Data_10k.csv', index=False)
+    data.to_csv('./01_rawData/bRoute1Data_30k.csv', index=False)
 
-def draw_data(filePath='./01_data/bRoute2Data_10k.csv'):
+def draw_data(filePath='./01_rawData/bRoute1Data_1k.csv'):
     # data = pd.read_csv(filePath).values
     data = pd.read_csv(filePath)
     routeData = data.loc[data['label']==1].values
@@ -238,7 +219,7 @@ def draw_data(filePath='./01_data/bRoute2Data_10k.csv'):
     draw_points_xy(rx,ry,color='blue')
     draw_points_xy(nrx,nry,color='green')
 
-# generate_map_xy(10000)
+generate_map_xy(30000)
 draw_map()
 draw_walking_path(vertices,7,plt)
 # draw_data('./shuffledRoute1.csv')
