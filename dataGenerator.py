@@ -15,15 +15,20 @@ doorsDimension = pd.read_csv('./01_rawData/door.csv')
 routesDimension = pd.read_csv('./01_rawData/route.csv')
 # routesDimension = pd.read_csv('./01_rawData/route2.csv')
 
+
 plt.figure()
 ax = plt.gca()
 
 xlim_offset = 200
 ylim_offset = 200
 offset = 200
+
+
 ax.axes.set_xlim([roomsDimension.min().values[0]-offset,roomsDimension.max().values[0]+offset])
 ax.axes.set_ylim([roomsDimension.min().values[1]-offset,roomsDimension.max().values[1]+offset])
 
+# print roomsDimension.min().values
+# print roomsDimension.max().values
 # currentAxis.add_patch(Rectangle((i[0],  i[1]), i[2],  i[3],alpha=.2,facecolor='yellow',edgecolor='none'))
 
 def draw_rectangle(rectangle_dimensions, alpha=1, facecolor='none', edgecolor='black'):
@@ -184,7 +189,12 @@ def generate_nonRoute_xy(numberOfSamples):
         if(isOnRoute(routesDimension, nonRouteX[i], nonRouteY[i])):
             indexArray = np.append(indexArray, i)
     nonRouteX = np.delete(nonRouteX, indexArray)
+    nonRouteX = np.append(nonRouteX,[roomsDimension.min().values[0], roomsDimension.max().values[0]])
     nonRouteY = np.delete(nonRouteY, indexArray)
+    nonRouteY = np.append(nonRouteY,[roomsDimension.min().values[1], roomsDimension.max().values[1]])
+
+    # print nonRouteX
+    # print nonRouteY
     return nonRouteX, nonRouteY
 
 def generate_map_xy(totalNumberOfSamples):
@@ -207,7 +217,7 @@ def generate_map_xy(totalNumberOfSamples):
     # print(len(data))
     data.to_csv('./01_rawData/bRoute1Data_30k.csv', index=False)
 
-def draw_data(filePath='./01_rawData/bRoute1Data_1k.csv'):
+def draw_data(filePath='./01_rawData/bRoute1Data_3k.csv'):
     # data = pd.read_csv(filePath).values
     data = pd.read_csv(filePath)
     routeData = data.loc[data['label']==1].values
@@ -219,7 +229,7 @@ def draw_data(filePath='./01_rawData/bRoute1Data_1k.csv'):
     draw_points_xy(rx,ry,color='blue')
     draw_points_xy(nrx,nry,color='green')
 
-generate_map_xy(30000)
+# generate_map_xy(30000)
 draw_map()
 draw_walking_path(vertices,7,plt)
 # draw_data('./shuffledRoute1.csv')
@@ -228,4 +238,4 @@ draw_walking_path(vertices,7,plt)
 
 
 # draw_data('./01_data/walkingPathData.csv')
-plt.show()
+# plt.show()

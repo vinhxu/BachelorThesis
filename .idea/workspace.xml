@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb13a418-8600-4521-a3a1-baab5d3da670" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01_rawData/rbRoute1Data_10k.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01_rawData/rbRoute1Data_1k.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01_rawData/rbRoute1Data_3k.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01_rawData/walkingPathData.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/03_savedModel/checkpoint" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ANN.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/load_data.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01_rawData/bRoute1Data_3k.csv" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/01_rawData/bRoute1Data_30k.csv" afterPath="$PROJECT_DIR$/01_rawData/rbRoute1Data_30k.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01_rawData/bRoute1Data_10k.csv" afterPath="$PROJECT_DIR$/01_rawData/bRoute1Data_10k.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01_rawData/bRoute1Data_1k.csv" afterPath="$PROJECT_DIR$/01_rawData/bRoute1Data_1k.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01_rawData/bRoute1Data_30k.csv" afterPath="$PROJECT_DIR$/01_rawData/bRoute1Data_30k.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataGenerator.py" afterPath="$PROJECT_DIR$/dataGenerator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,17 +30,55 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="dataGenerator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ANN.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ANN.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="422">
+              <caret line="342" column="10" lean-forward="false" selection-start-line="342" selection-start-column="10" selection-end-line="342" selection-end-column="10" />
+              <folding>
+                <element signature="e#10#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="load_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/load_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="542">
+              <caret line="102" column="23" lean-forward="true" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
+              <folding>
+                <element signature="e#1#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dataGenerator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dataGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2788">
-              <caret line="3" column="40" lean-forward="false" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-              <folding />
+            <state relative-caret-position="3465">
+              <caret line="231" column="14" lean-forward="true" selection-start-line="231" selection-start-column="14" selection-end-line="231" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>walking</find>
+      <find>03_model_saved</find>
+      <find>x</find>
+      <find>append</find>
+      <find>convert</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>03_savedModel</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,13 +87,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/dataGenerator.py" />
+        <option value="$PROJECT_DIR$/ANN.py" />
+        <option value="$PROJECT_DIR$/load_data.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="804" />
+    <option name="height" value="801" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -95,7 +147,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="804" extended-state="6" />
+    <frame x="0" y="22" width="1440" height="801" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -127,9 +179,31 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/dataGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2788">
-          <caret line="3" column="40" lean-forward="false" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="3465">
+          <caret line="231" column="14" lean-forward="true" selection-start-line="231" selection-start-column="14" selection-end-line="231" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/load_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="102" column="23" lean-forward="true" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
+          <folding>
+            <element signature="e#1#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ANN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="342" column="10" lean-forward="false" selection-start-line="342" selection-start-column="10" selection-end-line="342" selection-end-column="10" />
+          <folding>
+            <element signature="e#10#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

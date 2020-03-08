@@ -1,0 +1,3 @@
+model_checkpoint_path: "/Users/vinhxu/Desktop/gitBT/03_savedModel/.Latest_route1_30k.ckpt"
+all_model_checkpoint_paths: "/Users/vinhxu/Desktop/gitBT/03_savedModel/.route1_30k_8-8-8_Loss0.02_Accuracy99.3%.ckpt"
+all_model_checkpoint_paths: "/Users/vinhxu/Desktop/gitBT/03_savedModel/.Latest_route1_30k.ckpt"
