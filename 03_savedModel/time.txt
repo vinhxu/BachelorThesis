@@ -1,21 +1,145 @@
+Time unit in seconds
+
 ROUTE_1
-1k:
+1k: epoch=20000, batchsize=300, 
 1-145.629936934 s
-2-147.532406092 s
-3-145.749397039 s
+2-147.532406092 
+3-145.749397039 
+4-112.418622017 
 
-3k:
-1-289.690351009 s
-2-280.136223078 s
-3-282.861340046 s
+3k: epoch=20000, batchsize=1000,
+1-279.337560912 
+2-280.136223078 
+3-282.861340046 
+4-145.474545956
 
-10k:
+10k: epoch=20000, batchsize=3000,
+1-275.41477108 s
+2-268.606020927
+3-272.403672346
+
+30k: epoch=20000, batchsize=10000,
+1-747.720721006 
+2-746.000375986 
+3-747.709112883 
+4-540.941045046    batch size too big, loss is high but accuracy remains good
+
+
+ROUTE_2
+1k: epoch=20000, batchsize=300, 
 1-
 2-
 3-
+4-
 
-30k:
-1-747.720721006 s
-2-746.000375986 s
-3-747.709112883 s
+3k: epoch=20000, batchsize=1000,
+1-143.925781012 , 96.7%
+2-144.188971043 , 90.0%
+3-144.347382069 , 84.2%
+4-219.930649042 , 97.1%  with epoch=30k
+5-
+
+10k: epoch=20000, batchsize=3000,
+1-264.874413967 , 97.1%
+2-269.36598897  , 94.7% 
+3-264.873030901 , 93.3%
+4-396.719381809 , 96.3% with epoch=30k, batchsize=3000
+5-573.085314989 , 95.3% with epoch=30k, batchsize=1000
+
+
+30k: epoch=20000, batchsize=10000,
+1-
+2-
+3-
+4-
+
+
+
+Unchanged parameters: batch size = 3000, learning rate 0.001, 10k data set, route 1, ANN topology in-888-out
+
+
+Influence of epochs on accuracy and training time
+	Epochs = 300
+		accuracy 72.0%, training time 4   
+	Epochs = 1000
+		accuracy 77.6%, training time 14  
+	Epochs = 3000
+		accuracy 92.9%, training time 39  
+	Epochs = 10000
+		accuracy 98.7%, training time 135 
+	Epochs = 20000
+		accuracy 99.0%, training time 272
+	Epochs = 30000
+		accuracy 99.2%, training time 395 
+
+, epochs 20000, learning rate 0.001, 10k data set, route 1
+
+Influence of  batch size on accuracy and training time
+	Batch size = 100
+		accuracy 99.1%, training time 2193
+	Batch size = 300
+		accuracy 99.0%, training time 858
+	Batch size = 1000
+		accuracy 99.3%, training time 375
+	Batch size = 3000
+		accuracy 99.4%, training time 267
+	Batch size = 5000
+		accuracy 53.1%, training time 239
+	Batch size = 10000
+		accuracy 52.9%, training time 42
+
+(higher the learning rate, more time need to try to get the correct weights initialization for gradient descent)
+, batch size = 3000, epochs 20000, , 10k data set, route 1
+
+Influence of learning rate on accuracy and training time 
+	Learning rate 0.001
+		accuracy 99.4%, training time 267
+	Learning rate 0.003
+		accuracy 99.0%, training time 268
+	Learning rate 0.01
+		accuracy 98.9%, training time 258
+	Learning rate 0.03
+		accuracy from 53.1% -> 95.3 (epoch 1098), training time 257
+	Learning rate 0.1
+		accuracy 53.1%, training time 257
+
+
+Influence of ANN topology on accuracy and training time
+	Topology in-888-out, Epochs = 20000, batch size = 3000, learning rate 0.001, 10k data set, route 1
+		accuracy 99.4%, training time 267
+	Topology in-88-out, Epochs = 20000, batch size = 3000, learning rate 0.001, 10k data set, route 1
+		accuracy 97.6%, training time 235
+	Topology in-8-out, Epochs = 20000, batch size = 3000, learning rate 0.001, 10k data set, route 1
+		accuracy 85.7%, training time 202
+
+	Topology in-666-out, Epochs = 20000, batch size = 3000, learning rate 0.001, 10k data set, route 1
+		accuracy 98.6%, training time 269
+	Topology in-444-out, Epochs = 20000, batch size = 3000, learning rate 0.001, 10k data set, route 1
+		accuracy 72.1%, training time 233
+	Topology in-222-out, Epochs = 20000, batch size = 3000, learning rate 0.001, 10k data set, route 1
+		accuracy 53.1%, training time 249
+
+	Topology in-864-out, Epochs = 20000, batch size = 3000, learning rate 0.001, 10k data set, route 1
+		accuracy 95.9%, training time 245
+
+
+Influence of total number of data points on accuracy and training time
+	1000 points, batch size=300, 
+		accuracy 91.7%, training time 112
+	3000 points, batch size=1000, 
+		accuracy 98.6%, training time 145
+	10000 points, batch size=3000, 
+		accuracy 99.1%, training time 272
+	30000 points, batch size=10000, 
+		accuracy 99.5%, training time 540
+
+
+
+Influence of route complexity on accuracy and training time
+	route 1 
+		accuracy 99.1%, training time 272
+	route 2 
+		accuracy 97.1%, training time 264
+	route 3 
+		accuracy 95.7%, training time 275
 

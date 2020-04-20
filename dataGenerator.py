@@ -4,16 +4,11 @@ import math
 from matplotlib.patches import Rectangle
 import matplotlib.pyplot as plt
 
-
-
 vertices = np.array([(900, 350), (888, 855), (853, 855), (850, 779)])
-vertices = np.array([(890, 350), (892, 855), (853, 855), (850, 779)])
-# codes    = np.array([Path.MOVETO] + [Path.LINETO]* 3 + [Path.STOP])
 
 roomsDimension = pd.read_csv('./01_rawData/room.csv')
 doorsDimension = pd.read_csv('./01_rawData/door.csv')
-routesDimension = pd.read_csv('./01_rawData/route.csv')
-# routesDimension = pd.read_csv('./01_rawData/route2.csv')
+routesDimension = pd.read_csv('./01_rawData/route1.csv')
 
 
 plt.figure()
@@ -23,16 +18,14 @@ xlim_offset = 200
 ylim_offset = 200
 offset = 200
 
-
 ax.axes.set_xlim([roomsDimension.min().values[0]-offset,roomsDimension.max().values[0]+offset])
 ax.axes.set_ylim([roomsDimension.min().values[1]-offset,roomsDimension.max().values[1]+offset])
 
 # print roomsDimension.min().values
 # print roomsDimension.max().values
-# currentAxis.add_patch(Rectangle((i[0],  i[1]), i[2],  i[3],alpha=.2,facecolor='yellow',edgecolor='none'))
 
-def draw_rectangle(rectangle_dimensions, alpha=1, facecolor='none', edgecolor='black'):
-    for i in rectangle_dimensions.values:
+def draw_rectangle(rectangleDimensions, alpha=1, facecolor='none', edgecolor='black'):
+    for i in rectangleDimensions.values:
         ax.add_patch(Rectangle((i[0], i[1]), i[2], i[3], alpha=alpha, facecolor=facecolor, edgecolor=edgecolor))
 
 def draw_map():
@@ -40,8 +33,7 @@ def draw_map():
     draw_rectangle(doorsDimension,edgecolor='red')
     draw_rectangle(routesDimension,alpha=0.3, edgecolor='none',facecolor='yellow')
 
-
-def draw_walking_path(vertices, stepDistance, plot=plt):
+def draw_walking_path(vertices, stepDistance=7, plot=plt):
     angleCoefficiences = np.array([])
     distances  = np.array([])
     dividers   = np.array([])
@@ -51,19 +43,19 @@ def draw_walking_path(vertices, stepDistance, plot=plt):
     for i in range(len(vertices)-1):
         k = (float(vertices[i+1][1]) - vertices[i][1]) / (vertices[i+1][0] - vertices[i][0])
         angleCoefficiences = np.append(angleCoefficiences, k)
-        # print(angleCoefficiences)
+
         d = abs(math.sqrt(1+k**2) * (vertices[i+1][0] - vertices[i][0]))
         distances = np.append(distances, d)
-        # print(distances)
+
         dd = math.floor(float(d)/stepDistance)
         dividers = np.append(dividers, dd)
-        # print(dividers)
+
         xr = np.linspace(vertices[i][0],vertices[i+1][0],dd)
         xRange = np.append(xRange, xr)
-        # print(xRange)
+
         yr = np.linspace(vertices[i][1],vertices[i+1][1],dd)
         yRange = np.append(yRange, yr)
-        # print(yRange)
+
     # margin controls how "noisy" you want your fit to be.
     margin = 0.11
     noise  = margin*(np.random.random(len(yRange))-0.5)
@@ -71,9 +63,7 @@ def draw_walking_path(vertices, stepDistance, plot=plt):
     xRange = xRange + noise
     # ax = plot.gca()
     ax.plot(xRange, yRange, marker="o", ls="", ms=.7)
-
     generate_walkingPath_xy(xRange,yRange)
-
 
     return xRange, yRange
 
@@ -93,16 +83,13 @@ def generate_walkingPath_xy(xRange, yRange):
     nonRouteY = np.delete(nonRouteY, notIndexArray)
     routeX    = np.delete(routeX, indexArray)
     routeY    = np.delete(routeY, indexArray)
-    # print len(xRange), len(yRange)
-    # print len(routeX), len(routeY)
-    # print len(nonRouteX), len(nonRouteY)
-
 
     route    = pd.DataFrame({'x': routeX,    'y': routeY,    'label':  1})
     nonRoute = pd.DataFrame({'x': nonRouteX, 'y': nonRouteY, 'label':  0})
     data = pd.concat([route,nonRoute])
-    # data.to_csv('./01_data/walkingPathData.csv', index=False)
 
+def draw_points_xy(xPoints,yPoints, marker="o", color='b', ls="", ms=.7):
+    ax.plot(xPoints, yPoints, marker=marker, color=color, ls=ls,  ms=ms)
 
 
 def unbalanced(sampleDensity, roomsDimension, routesDimension):
@@ -157,9 +144,6 @@ def calculate_total_area(dimension):
         totalArea +=  i[2] * i[3]
     return totalArea
 
-def draw_points_xy(xPoints,yPoints, marker="o", color='b', ls="", ms=.7):
-    ax.plot(xPoints, yPoints, marker=marker, color=color, ls=ls,  ms=ms)
-
 
 def get_random_xy(dimension, totalNumberOfSamples):
     randomX = np.array([])
@@ -193,8 +177,6 @@ def generate_nonRoute_xy(numberOfSamples):
     nonRouteY = np.delete(nonRouteY, indexArray)
     nonRouteY = np.append(nonRouteY,[roomsDimension.min().values[1], roomsDimension.max().values[1]])
 
-    # print nonRouteX
-    # print nonRouteY
     return nonRouteX, nonRouteY
 
 def generate_map_xy(totalNumberOfSamples):
@@ -213,9 +195,8 @@ def generate_map_xy(totalNumberOfSamples):
     route    = pd.DataFrame({'x': rx,    'y': ry,    'label':  1})
     nonRoute = pd.DataFrame({'x': nrx,   'y': nry,   'label':  0})
     data = pd.concat([route,nonRoute])
-    # print data
-    # print(len(data))
-    data.to_csv('./01_rawData/bRoute1Data_30k.csv', index=False)
+
+    data.to_csv('./01_rawData/rbRoute3Data_30k.csv', index=False)
 
 def draw_data(filePath='./01_rawData/bRoute1Data_3k.csv'):
     # data = pd.read_csv(filePath).values
@@ -231,11 +212,11 @@ def draw_data(filePath='./01_rawData/bRoute1Data_3k.csv'):
 
 # generate_map_xy(30000)
 draw_map()
-draw_walking_path(vertices,7,plt)
+# draw_walking_path(vertices,7,plt)
 # draw_data('./shuffledRoute1.csv')
 # draw_data('./01_data/bnnData.csv')
 # draw_data('./01_data/bRoute2Data_10k.csv')
 
 
 # draw_data('./01_data/walkingPathData.csv')
-# plt.show()
+plt.show()
